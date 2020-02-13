@@ -74,11 +74,11 @@ document.querySelector('#create-note').addEventListener('click', function (event
     event.target.textContent = 'CLICKED'
 })
 
-document.querySelector('#remove-all').addEventListener('click', function (event) {
-    document.querySelectorAll('.note').forEach(function (note) {
-        note.remove()
-    })
-})
+// document.querySelector('#remove-all').addEventListener('click', function (event) {
+//     document.querySelectorAll('.note').forEach(function (note) {
+//         note.remove()
+//     })
+// })
 
 document.querySelector('#search-text').addEventListener('input', function (event) {
     // console.log(event.target.value)
@@ -88,3 +88,13 @@ document.querySelector('#search-text').addEventListener('input', function (event
 
 
 //***lesson 56 going to set up a filter object under the array above */
+
+
+//'submit' is the only event
+document.querySelector('#name-form').addEventListener('submit', function (event) {
+    event.preventDefault() //default of refreshing the page
+    //so we can do something meaningfull downbelow
+    console.log(event.target.elements.firstName.value)
+    event.target.elements.firstName.value = ''
+
+})
