@@ -91,10 +91,21 @@ document.querySelector('#search-text').addEventListener('input', function (event
 
 
 //'submit' is the only event
-document.querySelector('#name-form').addEventListener('submit', function (event) {
-    event.preventDefault() //default of refreshing the page
-    //so we can do something meaningfull downbelow
-    console.log(event.target.elements.firstName.value)
-    event.target.elements.firstName.value = ''
+// document.querySelector('#name-form').addEventListener('submit', function (event) {
+//     event.preventDefault() //default of refreshing the page
+//     //so we can do something meaningfull downbelow
+//     console.log(event.target.elements.firstName.value)
+//     event.target.elements.firstName.value = ''
+// })
 
+
+//CHECKBOX
+// document.querySelector('#for-fun').addEventListener('change', function (event) {
+//     console.log(event.target.checked)
+//     //event.target.checked is a boolean
+// })
+
+//DROPDOWNS
+document.querySelector('#filter-by').addEventListener('change', function (event) {
+    console.log(event.target.value)
 })

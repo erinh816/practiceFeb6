@@ -36,14 +36,26 @@ const todos = [{
 //*****Start TODO Filter Challenge */
 //Step 1
 const filterTodo = {
-  searchTodo: ''
+  searchTodo: '',
+  hideCompleted: false
 }
 
+
 const renderTodos = function (todos, filter) {
-  const filteredTodos = todos.filter(function (element) {
+  let filteredTodos = todos.filter(function (element) {
     return element.text.toLowerCase().includes(filter.searchTodo.toLowerCase())
   })
   // console.log(filteredTodos)
+
+  filteredTodos = filteredTodos.filter(function (todo) {
+    // if (filterTodo.hideCompleted) {
+    //   //if it's checked
+    //   return !todo.completed
+    // } else {
+    //   return true
+    // }
+    return !filters.hideCompleted || !todo.completed
+  })
 
 
   const incomplete = filteredTodos.filter(function (todo) {
@@ -119,10 +131,12 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
   //   completed: false
   // }
   // todos.push(oneNewTodo)
+
   todos.push({
     text: event.target.elements.todoName.value,
     completed: false
   })
+
   renderTodos(todos, filterTodo)
 
 
@@ -132,6 +146,26 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
 })
 
 
+//*CHECKBOX Challenge
 
+//1.Create a checkbox and setup event listener ->"Hide Completed"
+//it'll be unchecked by default??
+//2.Create new hideCompleted filter (default false)
+//alongside the search filter(default is an empty string), the default value of the new one will be false
+//3.Update hideCompleted an rerender list on checkbox change
+//when someone checks or unchecks the box, we want to update hideCompleted correctly
+//and we want to rerender that list
+//4.Setup renderTodos to remove completed items
+//in renderTodos, we're going to take this filter into account
+//if it's true, we don't want to show the ones completed
+//if it's false, we want to show everything cuz it hasn't checked the Hide Completed checkbox
+
+
+
+document.querySelector('#for-fun').addEventListener('change', function (event) {
+  filterTodo.hideCompleted = event.target.checked
+  console.log(event.target.checked)
+  renderTodos(todos, filterTodo)
+})
 
 
