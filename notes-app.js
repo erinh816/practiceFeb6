@@ -12,6 +12,37 @@ const notes = [{
 const filters = {
     searchText: '' //filter by this default value
 }
+
+//create read update (by set a different value) and delete
+//**** local storage only supports string based data
+
+//setItem takes 2 arguments, the key and the value
+// localStorage.setItem('location', 'New York')
+
+//getItem takes one argument, the key
+// console.log(localStorage.getItem('location'))
+
+// localStorage.removeItem('location')
+
+// localStorage.clear()//delete everything no matter what the key is
+// const user = {
+//     name: 'Stuff Curry',
+//     age: 24
+// }
+
+//JSON = JS Object Notation, covert object into string
+//we can't use '' in JSON, it has to be ""
+// const userJSON = JSON.stringify(user)
+// console.log(userJSON)
+// localStorage.setItem('user', userJSON)
+
+const userJSON = localStorage.getItem('user')
+const user = JSON.parse(userJSON)
+console.log(user)
+console.log(`${user.name} is ${user.age}`)
+
+
+
 //first, we are going to call this new funtion one time right away to make the data shows up
 //second, we are going to call the function every time the event listener fires
 const renderNotes = function (notes, filters) {
