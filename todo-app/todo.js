@@ -16,12 +16,9 @@
 //   completed: true
 // }]
 
-let todos = []
+const todos = getSavedTodos()
 
-const todosJSON = localStorage.getItem('todos')
-if (todosJSON !== null) {
-  todos = JSON.parse(todosJSON)
-}
+
 
 
 //TASK1:remove all p tags that have "the" in the text
@@ -50,50 +47,7 @@ const filterTodo = {
 }
 
 
-const renderTodos = function (todos, filter) {
-  let filteredTodos = todos.filter(function (element) {
-    return element.text.toLowerCase().includes(filter.searchTodo.toLowerCase())
-  })
-  // console.log(filteredTodos)
-
-  filteredTodos = filteredTodos.filter(function (todo) {
-    if (filterTodo.hideCompleted) {
-      //if it's checked
-      return !todo.completed
-    } else {
-      return true
-    }
-    // return !filters.hideCompleted || !todo.completed
-  })
-
-
-  const incomplete = filteredTodos.filter(function (todo) {
-    return !todo.completed
-  })
-  console.log(incomplete)//this is an array 
-
-  document.querySelector('#todo').innerHTML = ''
-
-  const summary = document.createElement("p")
-  summary.textContent = `you have ${incomplete.length} todos left`
-  document.querySelector('#todo').appendChild(summary)
-
-
-
-  filteredTodos.forEach(function (todo) {
-    console.log(todo.text)
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    document.querySelector('#todo').appendChild(p)
-  })
-
-
-}
-
 renderTodos(todos, filterTodo)
-
-
-
 
 
 //********END TODO FILTER Challenge */
@@ -146,7 +100,9 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
     completed: false
   })
 
-  localStorage.setItem('todos', JSON.stringify(todos))
+
+  saveTodos(todos)
+  // localStorage.setItem('todos', JSON.stringify(todos))
 
   renderTodos(todos, filterTodo)
 
@@ -180,19 +136,5 @@ document.querySelector('#for-fun').addEventListener('change', function (event) {
 })
 
 
-//Fetch existing todos from localStorage
-//getSavedTodos
-
-//Save todos to localStorage
-//saveTodos
-
-//Render application todos based on filters
-//renderTodos
-
-//Get the DOM elements for an individual note
-//generateTodoDOM
-
-//Get the DOM elements for list summary
-//generateSummaryDOM
 
 
