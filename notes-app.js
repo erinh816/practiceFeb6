@@ -1,13 +1,15 @@
-const notes = [{
-    title: 'my next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise, Eating a bit better'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}]
+// const notes = [{
+//     title: 'my next trip',
+//     body: 'I would like to go to Spain'
+// }, {
+//     title: 'Habbits to work on',
+//     body: 'Exercise, Eating a bit better'
+// }, {
+//     title: 'Office modification',
+//     body: 'Get a new seat'
+// }]
+
+const notes = getSavedNotes()
 
 const filters = {
     searchText: '' //filter by this default value
@@ -36,30 +38,16 @@ const filters = {
 // console.log(userJSON)
 // localStorage.setItem('user', userJSON)
 
-const userJSON = localStorage.getItem('user')
-const user = JSON.parse(userJSON)
-console.log(user)
-console.log(`${user.name} is ${user.age}`)
+// const userJSON = localStorage.getItem('user')
+// const user = JSON.parse(userJSON)
+// console.log(user)
+// console.log(`${user.name} is ${user.age}`)
+
 
 
 
 //first, we are going to call this new funtion one time right away to make the data shows up
 //second, we are going to call the function every time the event listener fires
-const renderNotes = function (notes, filters) {
-    const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
-    // console.log(filteredNotes)
-    document.querySelector('#notes').innerHTML = ''
-    //set the new html value
-    //this wipe everything and forEach below add new stuff in
-
-    filteredNotes.forEach(function (note) {
-        const noteElement = document.createElement('p')
-        noteElement.textContent = note.title
-        document.querySelector('#notes').appendChild(noteElement)
-    })
-}
 
 renderNotes(notes, filters)
 
@@ -91,18 +79,24 @@ renderNotes(notes, filters)
 //And we have different DOM methods
 
 //Add a new element
-const newP = document.createElement("p");
-newP.textContent = "NEW ELEMENT";
-document.querySelector('body').appendChild(newP)
+// const newP = document.createElement("p");
+// newP.textContent = "NEW ELEMENT";
+// document.querySelector('body').appendChild(newP)
 
 
 
 //Event Listener
 
 document.querySelector('#create-note').addEventListener('click', function (event) {
-    console.log('did this work')
-    console.log(event)
-    event.target.textContent = 'CLICKED'
+    // console.log('did this work')
+    // console.log(event)
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters)
+    // event.target.textContent = 'CLICKED'
 })
 
 // document.querySelector('#remove-all').addEventListener('click', function (event) {

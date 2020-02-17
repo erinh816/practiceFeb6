@@ -1,19 +1,28 @@
-const todos = [{
-  text: 'Wake up',
-  completed: false
-}, {
-  text: 'Eat the breakfast',
-  completed: true
-}, {
-  text: 'Eat the lunch',
-  completed: false
-}, {
-  text: 'Go to work',
-  completed: true
-}, {
-  text: 'Study',
-  completed: true
-}]
+
+// const todos = [{
+//   text: 'Wake up',
+//   completed: false
+// }, {
+//   text: 'Eat the breakfast',
+//   completed: true
+// }, {
+//   text: 'Eat the lunch',
+//   completed: false
+// }, {
+//   text: 'Go to work',
+//   completed: true
+// }, {
+//   text: 'Study',
+//   completed: true
+// }]
+
+let todos = []
+
+const todosJSON = localStorage.getItem('todos')
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON)
+}
+
 
 //TASK1:remove all p tags that have "the" in the text
 //step 1: grab all p
@@ -48,13 +57,13 @@ const renderTodos = function (todos, filter) {
   // console.log(filteredTodos)
 
   filteredTodos = filteredTodos.filter(function (todo) {
-    // if (filterTodo.hideCompleted) {
-    //   //if it's checked
-    //   return !todo.completed
-    // } else {
-    //   return true
-    // }
-    return !filters.hideCompleted || !todo.completed
+    if (filterTodo.hideCompleted) {
+      //if it's checked
+      return !todo.completed
+    } else {
+      return true
+    }
+    // return !filters.hideCompleted || !todo.completed
   })
 
 
@@ -137,6 +146,8 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
     completed: false
   })
 
+  localStorage.setItem('todos', JSON.stringify(todos))
+
   renderTodos(todos, filterTodo)
 
 
@@ -167,5 +178,21 @@ document.querySelector('#for-fun').addEventListener('change', function (event) {
   console.log(event.target.checked)
   renderTodos(todos, filterTodo)
 })
+
+
+//Fetch existing todos from localStorage
+//getSavedTodos
+
+//Save todos to localStorage
+//saveTodos
+
+//Render application todos based on filters
+//renderTodos
+
+//Get the DOM elements for an individual note
+//generateTodoDOM
+
+//Get the DOM elements for list summary
+//generateSummaryDOM
 
 
