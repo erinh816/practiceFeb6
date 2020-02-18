@@ -91,6 +91,7 @@ document.querySelector('#create-note').addEventListener('click', function (event
     // console.log('did this work')
     // console.log(event)
     notes.push({
+        id: uuidv4(),
         title: '',
         body: ''
     })

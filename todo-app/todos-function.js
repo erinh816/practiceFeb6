@@ -52,18 +52,43 @@ const renderTodos = function (todos, filter) {
     filteredTodos.forEach(function (todo) {
         // generateTodoDOM(todo)
         document.querySelector('#todo').appendChild(generateTodoDOM(todo))
+
     })
 
 
 }
 
 // Get the DOM elements for an individual note
-// generateTodoDOM
+//1.Setup a root div
+//2.Setup and append a checkbox (set type attribute)
+//someNode.setAttribute('type','text')
+//3.Setup and append a span (set text)
+//4.Setup and append a button (set text)
+
 const generateTodoDOM = function (todo) {
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    return p
+    const rootDiv = document.createElement('div')
+    const checkBox = document.createElement('input')
+    const deleteButton = document.createElement('button')
+    const text = document.createElement('span')
+    text.textContent = todo.text
+
+    checkBox.setAttribute('type', 'checkbox')
+
+    deleteButton.textContent = 'x'
+
+    rootDiv.appendChild(checkBox)
+
+    rootDiv.appendChild(text)
+
+    rootDiv.appendChild(deleteButton)
+
+
+    return rootDiv
+
+
 }
+
+
 
 
 
