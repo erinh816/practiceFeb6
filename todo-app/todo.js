@@ -83,18 +83,6 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
 
   console.log(event.target.elements.todoName.value)
 
-  // //add this value as a new Todo on page
-  // const newTODO = document.createElement('p')
-  // newTODO.textContent = event.target.elements.todoName.value
-  // document.querySelector('#todo').appendChild(newTODO)
-
-  // //push it to the original array
-  // const oneNewTodo = {
-  //   text: event.target.elements.todoName.value,
-  //   completed: false
-  // }
-  // todos.push(oneNewTodo)
-
   todos.push({
     id: uuidv4(),
     text: event.target.elements.todoName.value,

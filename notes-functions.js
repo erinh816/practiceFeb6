@@ -12,6 +12,24 @@ const getSavedNotes = function () {
     }
 }
 
+//Remove a note from the list
+const removeNote = function (id) {
+    //findIndex this function gets called for each item in an array
+    const noteIndex = notes.findIndex(function (note) {
+        return note.id === id
+        //return true
+    })
+    if (noteIndex > -1) {
+        notes.splice(noteIndex, 1)
+    }
+}
+
+//Save the notes to localSorage
+const saveNotes = function (notes) {
+    localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+
 //Generate the DOM structure for a note
 const generateNoteDOM = function (note) {
     const noteElement = document.createElement('div')
@@ -21,6 +39,13 @@ const generateNoteDOM = function (note) {
     //Setup the remove note button
     button.textContent = 'x'
     noteElement.appendChild(button)
+    button.addEventListener('click', function (event) {
+        console.log(note)
+        //we need to delete the element from the array and save note
+        removeNote(note.id)
+        saveNotes(notes)
+        renderNotes(notes, filters)
+    })
 
     //Setup the note title text
     if (note.title.length > 0) {

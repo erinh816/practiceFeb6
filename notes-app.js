@@ -86,16 +86,13 @@ renderNotes(notes, filters)
 
 
 //Event Listener
-
 document.querySelector('#create-note').addEventListener('click', function (event) {
-    // console.log('did this work')
-    // console.log(event)
     notes.push({
         id: uuidv4(),
         title: '',
         body: ''
     })
-    localStorage.setItem('notes', JSON.stringify(notes))
+    saveNotes(notes)
     renderNotes(notes, filters)
     // event.target.textContent = 'CLICKED'
 })

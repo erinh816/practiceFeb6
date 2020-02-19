@@ -1,6 +1,4 @@
 // Fetch existing todos from localStorage
-// getSavedTodos
-
 const getSavedTodos = function () {
     const todosJSON = localStorage.getItem('todos')
     if (todosJSON !== null) {
@@ -12,14 +10,21 @@ const getSavedTodos = function () {
 
 
 // Save todos to localStorage
-// saveTodos
-const saveTodos = function () {
+const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
-// Render application todos based on filters
-// renderTodos
+//Remove one todo by clicking deleteButton
+const removeTodo = function (id) {
+    const todoIndex = todos.findIndex(function (oneTodo) {
+        return oneTodo.id === id
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
 
+// Render application todos based on filters
 const renderTodos = function (todos, filter) {
     let filteredTodos = todos.filter(function (element) {
         return element.text.toLowerCase().includes(filter.searchTodo.toLowerCase())
@@ -43,11 +48,7 @@ const renderTodos = function (todos, filter) {
     console.log(incomplete)//this is an array 
 
     document.querySelector('#todo').innerHTML = ''
-
-
     document.querySelector('#todo').appendChild(generateSummaryDOM(incomplete))
-
-
 
     filteredTodos.forEach(function (todo) {
         // generateTodoDOM(todo)
@@ -75,6 +76,13 @@ const generateTodoDOM = function (todo) {
     checkBox.setAttribute('type', 'checkbox')
 
     deleteButton.textContent = 'x'
+    deleteButton.addEventListener('click', function (event) {
+        // console.log(todo)
+        removeTodo(todo.id)
+        saveTodos(todo)
+
+        renderTodos(todos, filterTodo)
+    })
 
     rootDiv.appendChild(checkBox)
 
@@ -84,18 +92,19 @@ const generateTodoDOM = function (todo) {
 
 
     return rootDiv
-
-
 }
 
 
-
-
-
 // Get the DOM elements for list summary
-// generateSummaryDOM
 const generateSummaryDOM = function (incomplete) {
     const summary = document.createElement("p")
     summary.textContent = `you have ${incomplete.length} todos left`
     return summary
 }
+
+//用这个删除已经加了UUID的todo
+// document.querySelector('#remove-all').addEventListener('click', function (event) {
+//     document.querySelectorAll('.note').forEach(function (note) {
+//         note.remove()
+//     })
+// })
