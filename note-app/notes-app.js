@@ -87,14 +87,17 @@ renderNotes(notes, filters)
 
 //Event Listener
 document.querySelector('#create-note').addEventListener('click', function (event) {
+    const id = uuidv4()
     notes.push({
         id: uuidv4(),
         title: '',
         body: ''
     })
     saveNotes(notes)
-    renderNotes(notes, filters)
+    // renderNotes(notes, filters)
     // event.target.textContent = 'CLICKED'
+    location.assign(`edit.html#${id}`)
+    //after we add this line, we can delete renderNotes(notes, filters) because we don't need to rerender the current page anymore
 })
 
 // document.querySelector('#remove-all').addEventListener('click', function (event) {
@@ -132,3 +135,6 @@ document.querySelector('#search-text').addEventListener('input', function (event
 document.querySelector('#filter-by').addEventListener('change', function (event) {
     console.log(event.target.value)
 })
+
+//1.Set up link href to include hash with id
+//2.Set up the assign call to include hash with id
