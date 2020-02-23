@@ -4,9 +4,9 @@ const removeElement = document.querySelector('#remove-note')
 
 const noteId = location.hash.substring(1) //from first index to the end
 
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
-const note = notes.find(function (note) {
+let note = notes.find(function (note) {
     return note.id === noteId
 })
 
@@ -39,4 +39,19 @@ removeElement.addEventListener('click', function (event) {
     removeNote(note.id)
     saveNotes(notes)
     location.assign('index.html')
+})
+
+window.addEventListener('storage', function (event) {
+    if (event.key === 'notes') {
+        notes = JSON.parse(event.newValue)
+        note = notes.find(function (note) {
+            return note.id === mpteOd
+        })
+        if (note === undefined) {
+            location.assign('index.html')
+        }
+        titleElement.value = note.title
+        bodyElement.value = note.body
+    }
+
 })
