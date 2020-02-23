@@ -1,6 +1,3 @@
-console.log(uuidv4())
-
-
 //read existing notes from localStorage
 const getSavedNotes = function () {
     const notesJSON = localStorage.getItem('notes')
@@ -52,7 +49,7 @@ const generateNoteDOM = function (note) {
         textElement.textContent = note.title
     } else { textElement.textContent = 'unnamed note' }
 
-    textElement.setAttribute('href','edit.html#${note.id}')
+    textElement.setAttribute('href', `edit.html#${note.id}`)
 
 
     noteElement.appendChild(textElement)

@@ -51,15 +51,6 @@ const filters = {
 
 renderNotes(notes, filters)
 
-//DOM - Document Object Model
-
-//document is an object provided to us by the browser
-//we can use document to perform all the DOM manipulations
-
-//step 1: query it (querySelector matches the first match it finds)
-//step 2: action
-//step 3
-
 //*Query and remove
 // const p = document.querySelector('p')
 // p.remove()
@@ -73,10 +64,6 @@ renderNotes(notes, filters)
 //   // p.remove();
 // });
 
-//Summary: document is an object which models our html document
-//if we want to read, write or update the html from JavaScript
-//the DOM is the way to get it done
-//And we have different DOM methods
 
 //Add a new element
 // const newP = document.createElement("p");
@@ -89,7 +76,7 @@ renderNotes(notes, filters)
 document.querySelector('#create-note').addEventListener('click', function (event) {
     const id = uuidv4()
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         body: ''
     })
@@ -113,28 +100,8 @@ document.querySelector('#search-text').addEventListener('input', function (event
 })
 
 
-//***lesson 56 going to set up a filter object under the array above */
-
-
-//'submit' is the only event
-// document.querySelector('#name-form').addEventListener('submit', function (event) {
-//     event.preventDefault() //default of refreshing the page
-//     //so we can do something meaningfull downbelow
-//     console.log(event.target.elements.firstName.value)
-//     event.target.elements.firstName.value = ''
-// })
-
-
-//CHECKBOX
-// document.querySelector('#for-fun').addEventListener('change', function (event) {
-//     console.log(event.target.checked)
-//     //event.target.checked is a boolean
-// })
-
 //DROPDOWNS
 document.querySelector('#filter-by').addEventListener('change', function (event) {
     console.log(event.target.value)
 })
 
-//1.Set up link href to include hash with id
-//2.Set up the assign call to include hash with id
