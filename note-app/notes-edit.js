@@ -105,11 +105,10 @@ const date2 = new Date('March 30 2009 19:20:06')
 const timestamp1 = date1.getTime()
 const timestamp2 = date2.getTime()
 
-const myDate1 = new Date(timestamp1)
-const myDate2 = new Date(timestamp2)
 
-if(myDate1.getFullYear()<myDate2.getFullYear()){
-    console.log(`${myDate1} is first`)
+
+if(timestamp1<timestamp2){
+    console.log(`${date1} is first`)
 }else{
-    console.log(`${myDate2} is first`)
+    console.log(`${date2} is first`)
 }
