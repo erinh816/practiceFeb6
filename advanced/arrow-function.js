@@ -31,7 +31,7 @@ console.log(under30)
 //1. find the person with age 22
 //2. print the person's name
 
-const age20 = people.filter((person) => person.age === 20)
+const age20 = people.find((person) => person.age === 20)
 
 console.log(age20)
 
