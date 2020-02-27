@@ -1,4 +1,9 @@
+//1. add a DOM element between the title and body inputs (empty span)
+//2. Set text value: last edited 4 hours ago
+//3. Update value of title/body/storage change
+
 const titleElement = document.querySelector('#note-title');
+const timeElement = document.querySelector('#last-edited');
 const bodyElement = document.querySelector('#note-body');
 const removeElement = document.querySelector('#remove-note');
 
@@ -16,6 +21,8 @@ if (note === undefined) {
 
 titleElement.value = note.title;
 bodyElement.value = note.body;
+// timeElement.textContent = `Last edited ${moment(note.updatedAt).fromNow()}`;
+timeElement.textContent = generateLastEdited(note.updatedAt)
 
 //1. setup input event for title
 //2. Update note object and save notes list
@@ -24,11 +31,15 @@ bodyElement.value = note.body;
 
 titleElement.addEventListener('input', function (event) {
 	note.title = event.target.value;
+	note.updatedAt = moment().valueOf();
+	timeElement.textContent = generateLastEdited(note.updatedAt);
 	saveNotes(notes);
 });
 
 bodyElement.addEventListener('input', function (event) {
 	note.body = event.target.value;
+	note.updatedAt = moment().valueOf();
+	timeElement.textContent = generateLastEdited(note.updatedAt);
 	saveNotes(notes);
 });
 
@@ -52,19 +63,9 @@ window.addEventListener('storage', function (event) {
 
 		titleElement.value = note.title;
 		bodyElement.value = note.body;
+		timeElement.textContent = generateLastEdited(note.updatedAt);
 	}
 });
 
-//sync homepage as well
-window.addEventListener('storage', function (event) {
-	if (event.key === 'notes') {
-		//parse the new data and update notes
-		//rerender the notes
-		notes = JSON.parse(event.newValue)
-		//my understanding:update notes with newValue typed
-		renderNotes(notes, filters)
-		//my understanding:rerender
-	}
-})
 
 
