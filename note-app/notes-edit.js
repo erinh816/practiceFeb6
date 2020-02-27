@@ -16,6 +16,10 @@ let note = notes.find((note) => note.id === noteId);
 if (note === undefined) {
 	location.assign('index.html');
 }
+//can covert to Truthy-Falsy
+// if (!note){
+// 	location.assign('index.html')
+// }
 
 titleElement.value = note.title;
 bodyElement.value = note.body;
@@ -56,6 +60,10 @@ window.addEventListener('storage', (event) => {
 		if (note === undefined) {
 			location.assign('index.html');
 		}
+		//can be converted to Truthy/Falsy
+		// if (!note) {
+		// 	location.assign('index.html')
+		// }
 
 		titleElement.value = note.title;
 		bodyElement.value = note.body;
