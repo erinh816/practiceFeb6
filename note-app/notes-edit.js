@@ -11,9 +11,7 @@ const noteId = location.hash.substring(1); //from first index to the end
 
 let notes = getSavedNotes();
 
-let note = notes.find(function (note) {
-	return note.id === noteId;
-});
+let note = notes.find((note) => note.id === noteId);
 
 if (note === undefined) {
 	location.assign('index.html');
@@ -29,33 +27,31 @@ timeElement.textContent = generateLastEdited(note.updatedAt)
 //3. Repeat steps 1-2 for body
 //4. Setup a remove button that removes notes and sends user back to home page
 
-titleElement.addEventListener('input', function (event) {
+titleElement.addEventListener('input', (event) => {
 	note.title = event.target.value;
 	note.updatedAt = moment().valueOf();
 	timeElement.textContent = generateLastEdited(note.updatedAt);
 	saveNotes(notes);
 });
 
-bodyElement.addEventListener('input', function (event) {
+bodyElement.addEventListener('input', (event) => {
 	note.body = event.target.value;
 	note.updatedAt = moment().valueOf();
 	timeElement.textContent = generateLastEdited(note.updatedAt);
 	saveNotes(notes);
 });
 
-removeElement.addEventListener('click', function (event) {
+removeElement.addEventListener('click', (event) => {
 	removeNote(note.id);
 	saveNotes(notes);
 	location.assign('index.html');
 });
 
-window.addEventListener('storage', function (event) {
+window.addEventListener('storage', (event) => {
 	if (event.key === 'notes') {
 		JSON.parse(event.newValue);
 
-		note = notes.find(function (note) {
-			return note.id === noteId;
-		});
+		note = notes.find((note) => note.id === noteId);
 
 		if (note === undefined) {
 			location.assign('index.html');

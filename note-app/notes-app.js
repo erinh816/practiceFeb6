@@ -74,7 +74,7 @@ renderNotes(notes, filters)
 
 
 //Event Listener
-document.querySelector('#create-note').addEventListener('click', function (event) {
+document.querySelector('#create-note').addEventListener('click', (event) => {
     const id = uuidv4()
     const timeStamp = moment().valueOf()
 
@@ -98,7 +98,7 @@ document.querySelector('#create-note').addEventListener('click', function (event
 //     })
 // })
 
-document.querySelector('#search-text').addEventListener('input', function (event) {
+document.querySelector('#search-text').addEventListener('input', (event) => {
     // console.log(event.target.value)
     filters.searchText = event.target.value
     renderNotes(notes, filters)
@@ -106,14 +106,14 @@ document.querySelector('#search-text').addEventListener('input', function (event
 
 
 //DROPDOWNS
-document.querySelector('#filter-by').addEventListener('change', function (event) {
+document.querySelector('#filter-by').addEventListener('change', (event) => {
     // console.log(event.target.value)
     filters.sortBy = event.target.value
     renderNotes(notes, filters)
 })
 
 //sync homepage as well
-window.addEventListener('storage', function (event) {
+window.addEventListener('storage', (event) => {
     if (event.key === 'notes') {
         //parse the new data and update notes
         //rerender the notes

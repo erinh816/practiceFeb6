@@ -58,7 +58,7 @@ renderTodos(todos, filterTodo)
 //   event.target.textContent = 'ADDED'
 // })
 
-document.querySelector('#new-todo').addEventListener('input', function (event) {
+document.querySelector('#new-todo').addEventListener('input', (event) => {
   // console.log(event.target.value)
   filterTodo.searchTodo = event.target.value
   renderTodos(todos, filterTodo)
@@ -78,7 +78,7 @@ document.querySelector('#new-todo').addEventListener('input', function (event) {
 //4.Rerender the application
 //5.Clear the input filed value
 
-document.querySelector('#todo-form').addEventListener('submit', function (event) {
+document.querySelector('#todo-form').addEventListener('submit', (event) => {
   event.preventDefault()
 
   console.log(event.target.elements.todoName.value)
@@ -118,7 +118,7 @@ document.querySelector('#todo-form').addEventListener('submit', function (event)
 
 
 
-document.querySelector('#for-fun').addEventListener('change', function (event) {
+document.querySelector('#for-fun').addEventListener('change', (event) => {
   filterTodo.hideCompleted = event.target.checked
   console.log(event.target.checked)
   renderTodos(todos, filterTodo)
