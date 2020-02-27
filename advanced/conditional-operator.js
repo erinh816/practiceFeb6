@@ -38,6 +38,6 @@ const team = [ 'Tyler', 'Porter','Nate','Rebecca','Cameron' ];
 // 	console.log('Too many people');
 // }
 
-const checkTeamSize = team.length <= 4 ? 'team size alright' : 'too many people';
+const checkTeamSize = team.length <= 4 ? `team size ${team.length}` : 'too many people';
 
 console.log(checkTeamSize);
