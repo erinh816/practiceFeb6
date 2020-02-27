@@ -12,7 +12,8 @@
 const notes = getSavedNotes()
 
 const filters = {
-    searchText: '' //filter by this default value
+    searchText: '', //filter by this default value
+    sortBy: 'byEdited'
 }
 
 //create read update (by set a different value) and delete
@@ -106,7 +107,9 @@ document.querySelector('#search-text').addEventListener('input', function (event
 
 //DROPDOWNS
 document.querySelector('#filter-by').addEventListener('change', function (event) {
-    console.log(event.target.value)
+    // console.log(event.target.value)
+    filters.sortBy = event.target.value
+    renderNotes(notes, filters)
 })
 
 //sync homepage as well
