@@ -1,8 +1,29 @@
+//strict mode
+'use strict'
+
+// const public = true; //public is reserved identifier in strict mode
+// let data;
+// const processData = () => {
+//     data = '1230987234'
+// }
+
+// processData()
+// console.log(data)
+
+
+
+
 //read existing notes from localStorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
 
-    return notesJSON ? JSON.parse(notesJSON) : []
+    try {
+        return notesJSON ? JSON.parse(notesJSON) : []
+    } catch (e) {
+        console.log(e.message)
+    }
+
+
     // if (notesJSON !== null) {
     //     return JSON.parse(notesJSON)
     // } else {

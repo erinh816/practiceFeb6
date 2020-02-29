@@ -1,7 +1,16 @@
+'use strict'
+
 // Fetch existing todos from localStorage
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
-    return todosJSON !== null ? JSON.parse(todosJSON) : []
+
+    try {
+        return todosJSON !== null ? JSON.parse(todosJSON) : []
+    } catch (e) {
+        console.log(e.message)
+    }
+
+
     // if (todosJSON !== null) {
     //     return JSON.parse(todosJSON)
     // } else {
@@ -9,7 +18,7 @@ const getSavedTodos = () => {
     // }
 
     //converted Truthy/Falthy
-    return todoJSON ? JSON.parse(todosJSON) : []
+    // return todoJSON ? JSON.parse(todosJSON) : []
 }
 
 

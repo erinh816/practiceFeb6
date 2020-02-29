@@ -1,3 +1,5 @@
+'use strict'
+
 // const notes = [{
 //     title: 'my next trip',
 //     body: 'I would like to go to Spain'

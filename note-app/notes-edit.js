@@ -1,3 +1,5 @@
+'use strict'
+
 //1. add a DOM element between the title and body inputs (empty span)
 //2. Set text value: last edited 4 hours ago
 //3. Update value of title/body/storage change

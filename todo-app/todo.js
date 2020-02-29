@@ -1,4 +1,4 @@
-
+'use strict'
 // const todos = [{
 //   text: 'Wake up',
 //   completed: false
