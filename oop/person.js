@@ -13,7 +13,10 @@ Person.prototype.getBio = function() {
 	let bio = `${this.firstName} is ${this.age}`;
 	this.likes.forEach((like) => {
 		bio = bio + `${this.firstName} likes ${like}`;
-	});
+    });
+    //we have to use arrow function for forEach so that we can use 'this'
+    //because arrow functions don't bind this value
+    //so it uses whatever this value its parent has
 	return bio;
 };
 
